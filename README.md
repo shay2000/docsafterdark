@@ -98,6 +98,16 @@ The **tag name** for a release must follow the structure: `v<VERSION>`.
 
 Contributions are welcome! Please feel free to submit issues or pull requests.
 
+## Support DocsAfterDark
+
+If this project is useful to you, you can support its maintenance with a coffee:
+
+<p align="center">
+  <a href="https://buymeacoffee.com/shay2k">
+    <img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" alt="Buy Me a Coffee"/>
+  </a>
+</p>
+
 ## License
 
 This project is open-source and available under the [GNU GPLv3 License](LICENSE).
