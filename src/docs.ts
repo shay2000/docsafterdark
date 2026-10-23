@@ -446,6 +446,10 @@ class DocsAfterDark {
 
         if (!invertEnabled) {
             setStyleProperty("documentInvert", documentInvert.off);
+            document.documentElement.setAttribute(
+                "data-dad-canvas-filter",
+                "none"
+            );
             return;
         }
 
@@ -476,6 +480,10 @@ class DocsAfterDark {
         }
 
         setStyleProperty("documentInvert", invertFilter);
+        document.documentElement.setAttribute(
+            "data-dad-canvas-filter",
+            invertFilter
+        );
     }
 
     private updateDocumentBorder() {
@@ -501,9 +509,16 @@ class DocsAfterDark {
 
         if (this.isTempDisabled) {
             insertStylesheet("docs.bundle.css", "stylesheet");
+            this.updateDocumentInvert(
+                resolveExtensionMode(this.extensionData.mode)
+            );
             button.classList.remove("enabled");
         } else {
             removeElement("stylesheet");
+            document.documentElement.setAttribute(
+                "data-dad-canvas-filter",
+                "none"
+            );
             button.classList.add("enabled");
         }
 
@@ -644,6 +659,7 @@ class DocsAfterDark {
     }
 
     private removeExtension() {
+        document.documentElement.setAttribute("data-dad-canvas-filter", "none");
         removeClassFromHTML(enabledClass);
         removeElement("stylesheet");
         removeElement("button");

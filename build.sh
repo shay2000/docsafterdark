@@ -113,7 +113,9 @@ fi
 # note: the build script will only warn you about an existing package with
 # the same version. it will remove it and overwrite it by default.
 
-TARGET_FILE="${RELEASE_DIR}/DocsAfterDark_${VERSION}.zip"
+# Use the npm identity for filenames so alpha builds are not labelled stable.
+PACKAGE_VERSION=$(node -p 'JSON.parse(require("fs").readFileSync("package.json", "utf8")).version')
+TARGET_FILE="${RELEASE_DIR}/DocsAfterDark_${PACKAGE_VERSION}.zip"
 if [ -f "$TARGET_FILE" ]; then
     print_warning "packaged version already exists: $TARGET_FILE"
 

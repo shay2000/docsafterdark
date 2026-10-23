@@ -2452,6 +2452,11 @@ img.docs-generativeai-onboarding-dialog-image,
     filter: var(--DocsAfterDark_documentInvert);
 }
 
+// The MAIN-world renderer filters text/shapes, not embedded images.
+.kix-appview-editor canvas[data-dad-image-safe] {
+    filter: none;
+}
+
 // DOCUMENT BORDER SHOULD BE CONTROLLABLE IN ANY MODE
 
 .kix-page-paginated {

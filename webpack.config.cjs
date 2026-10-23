@@ -10,6 +10,7 @@ module.exports = (env, argv) => {
         mode: "production",
         entry: {
             docs: "./src/docs.ts",
+            "image-safe-canvas": "./src/image-safe-canvas.ts",
             popup: "./src/popup.ts",
         },
         module: {
@@ -44,7 +45,14 @@ module.exports = (env, argv) => {
                         to: "manifest.json",
                         transform(content, path) {
                             const manifest = JSON.parse(content.toString());
-                            manifest.version = packageJSON.version;
+                            // WebExtension versions must be numeric; retain the
+                            // prerelease identity separately in Chromium's UI.
+                            const [numericVersion, prerelease] =
+                                packageJSON.version.split("-");
+                            manifest.version = numericVersion;
+                            if (prerelease) {
+                                manifest.version_name = packageJSON.version;
+                            }
                             return JSON.stringify(manifest, null, 2);
                         },
                     },

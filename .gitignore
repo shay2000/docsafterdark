@@ -155,3 +155,5 @@ artifacts/
 .claude/
 .codex/
 Demo Videos/
+test-results/
+__pycache__/

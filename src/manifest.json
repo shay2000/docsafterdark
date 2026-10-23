@@ -7,6 +7,12 @@
     "content_scripts": [
         {
             "matches": ["*://docs.google.com/document/*"],
+            "js": ["image-safe-canvas.bundle.js"],
+            "world": "MAIN",
+            "run_at": "document_start"
+        },
+        {
+            "matches": ["*://docs.google.com/document/*"],
             "js": ["docs.bundle.js"],
             "css": ["global.bundle.css"]
         }
