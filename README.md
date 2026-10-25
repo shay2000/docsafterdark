@@ -6,6 +6,25 @@
 
 A free and open-source browser extension for customizing the appearance of Google Docs.
 
+## Experimental image-safe canvas branch
+
+This fork branch (`fix/image-safe-canvas`, package `2.0.6-alpha.2`) is an
+experimental candidate, **not a production-ready image-preservation fix**. It is
+not the store release linked above.
+
+The hook preserves image colours only while its per-canvas replay stays within
+30,000 commands and a 16 MiB estimated RGBA snapshot budget and uses supported
+Canvas APIs. Unsupported mutable resources/composition use the original CSS
+renderer instead. Reset and width/height property or attribute changes recover
+image-safe mode.
+
+**Known live Chromium regression:** snapshotting HTML images exhausts the budget
+in the supplied public test document, causing legacy fallback and inverted photos.
+The strict photo-preservation test fails. A separate explicit legacy-reference
+control test passes; that is not an image-preservation pass. Firefox ESR preserved
+the measured photo crop in the recorded Linux run. See [verification and
+limitations](tests/README.md) before trying this branch.
+
 ## Features
 
 - Modern, sleek dark mode
